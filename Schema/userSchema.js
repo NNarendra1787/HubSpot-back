@@ -7,6 +7,10 @@ const userDetails = new mongoose.Schema({
         minLength: [2, "Minmum 3 charecter required"],
         maxLength: [60, "Maximum 15 Charecter Required"],
     },
+    company:{
+        type: String,
+        required : true,
+    },
     email:{
         type: String,
         required: true, 

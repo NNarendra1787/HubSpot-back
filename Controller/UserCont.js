@@ -7,7 +7,7 @@ const Users = require('../Schema/userSchema')
 
 const RegisterUser = async (req, res)=>{
     const RgData = req.body;
-    const {name, email, website, password, userId} = RgData;
+    const {name, company, email, website, password, userId} = RgData;
     const userData = await Users.findOne({email : email});
     
     if(userData){
@@ -21,6 +21,7 @@ const RegisterUser = async (req, res)=>{
 
         const DetailsObj = await Users({
             name: name,
+            company: company,
             email: email,
             website: website,
             password: hashPassword, 
@@ -33,6 +34,8 @@ const RegisterUser = async (req, res)=>{
             userId: result._id,
             token: token,
             name: name,
+            company: company,
+            email: email,
             website: website,
             result: result,
         })
