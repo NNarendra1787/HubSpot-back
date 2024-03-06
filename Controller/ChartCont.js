@@ -11,20 +11,30 @@ const ChartData = async(req, res)=>{
 }
 
 const AddChart = async(req, res)=>{
-   const data = req.body;
-   const {id, send, click, opened, clickedrate} = data;
+    try{
 
-   const Result = await Charts.create({
-    id, send, click, opened, clickedrate,
-   })
-
-   return res.send({meg: "User data has been Stored", Result: Result})
-}
+        const data = req.body;
+        const {id, send, click, opened, clickedrate} = data;
+        
+        const Result = await Charts.create({
+            id, send, click, opened, clickedrate,
+        })
+        
+        return res.send({meg: "User data has been Stored", Result: Result})
+    }catch(err){
+        console.log(err);
+    }
+    }
 
 const findData = async(req, res)=>{
-    const data = req.body;
-    const result = await Charts.find();
-    return res.send({Result: result})
+    try{
+
+        const data = req.body;
+        const result = await Charts.find();
+        return res.send({Result: result})
+    }catch(err){
+        console.log(err);
+    }
 }
 
 module.exports = {
